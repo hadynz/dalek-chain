@@ -1,0 +1,19 @@
+{
+  "curly": true,
+  "eqnull": true,
+  "eqeqeq": true,
+  "undef": true,
+  "browser": true,
+  "freeze": true,
+  "scripturl": true,
+  "smarttabs": true,
+  "sub": true,
+  "quotmark": "single",
+  "unused": "vars",
+  "maxcomplexity": 10,
+  "globals": {
+    "console": true,
+    "require": true,
+    "module": true
+  }
+}

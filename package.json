@@ -1,0 +1,30 @@
+{
+  "name": "dalek-extend",
+  "version": "1.0.0",
+  "description": "Returns a wrapped Dalek test object to extend with custom asserts and actions",
+  "main": "dalek-extend.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hadynz/dalek-extend.git"
+  },
+  "keywords": [
+    "dalek",
+    "chain",
+    "extend"
+  ],
+  "author": "Hady Osman <hadyos@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hadynz/dalek-extend/issues"
+  },
+  "homepage": "https://github.com/hadynz/dalek-extend",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-mocha": "^0.4.11",
+    "mocha-teamcity-reporter": "0.0.4"
+  },
+  "dependencies": {
+    "lodash": "^3.3.0"
+  }
+}
