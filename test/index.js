@@ -79,6 +79,44 @@ describe('dalek-extend', function(){
 
   });
 
+  describe('addActions', function(){
+
+    it('adds bulk custom actions', function(){
+      var test = {},
+        plugins = {
+          plugin1: function() {},
+          plugin2: function() {}
+        };
+
+      dalekPluginize.addActions(plugins);
+      dalekPluginize.extend(test);
+
+      assert.property(test, 'plugin1');
+      assert.property(test, 'plugin2');
+      assert.isFunction(test.plugin1);
+      assert.isFunction(test.plugin2);
+    });
+
+    it('adds bulk custom actions with a namespace', function(){
+      var test = {},
+        plugins = {
+          plugin1: function() {},
+          plugin2: function() {}
+        };
+
+      dalekPluginize.addActions('ns', plugins);
+      dalekPluginize.extend(test);
+
+      assert.notProperty(test, 'plugin1');
+      assert.notProperty(test, 'plugin2');
+      assert.property(test.ns, 'plugin1');
+      assert.property(test.ns, 'plugin2');
+      assert.isFunction(test.ns.plugin1);
+      assert.isFunction(test.ns.plugin2);
+    });
+
+  });
+
   describe('addAssertion', function(){
 
     it('adds a custom plugin to a test object', function(){
@@ -147,6 +185,52 @@ describe('dalek-extend', function(){
       dalekPluginize.addAssertion('ns1', pluginName, pluginMethod);
 
       assert.doesNotThrow(dalekPluginize.addAssertion.bind(this, 'ns2', pluginName, pluginMethod), Error);
+    });
+
+  });
+
+  describe('addAssertions', function(){
+
+    it('adds bulk custom assertions', function(){
+      var test = {
+          assert: {}
+        },
+        plugins = {
+          plugin1: function() {},
+          plugin2: function() {}
+        };
+
+      dalekPluginize.addAssertions(plugins);
+      dalekPluginize.extend(test);
+
+      assert.notProperty(test, 'plugin1');
+      assert.notProperty(test, 'plugin2');
+      assert.property(test.assert, 'plugin1');
+      assert.property(test.assert, 'plugin2');
+      assert.isFunction(test.assert.plugin1);
+      assert.isFunction(test.assert.plugin2);
+    });
+
+    it('adds bulk custom assertions with a namespace', function(){
+      var test = {
+          assert: {}
+        },
+        plugins = {
+          plugin1: function() {},
+          plugin2: function() {}
+        };
+
+      dalekPluginize.addAssertions('ns', plugins);
+      dalekPluginize.extend(test);
+
+      assert.notProperty(test, 'plugin1');
+      assert.notProperty(test, 'plugin2');
+      assert.notProperty(test.assert, 'plugin1');
+      assert.notProperty(test.assert, 'plugin2');
+      assert.property(test.assert.ns, 'plugin1');
+      assert.property(test.assert.ns, 'plugin2');
+      assert.isFunction(test.assert.ns.plugin1);
+      assert.isFunction(test.assert.ns.plugin2);
     });
 
   });

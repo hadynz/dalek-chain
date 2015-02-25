@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 var plugins = {
   actions: [],
   assertions: []
@@ -10,7 +12,8 @@ var inheritActions = function (test) {
     var parent = test;
 
     if (plugin.ns) {
-      parent = parent[plugin.ns] = {};
+      parent = parent[plugin.ns] = parent[plugin.ns] || {};
+
     }
 
     parent[plugin.name] = plugin.fn.bind(test);
@@ -22,7 +25,7 @@ var inheritAssertions = function (test) {
     var parent = test.assert;
 
     if (plugin.ns) {
-      parent = parent[plugin.ns] = {};
+      parent = parent[plugin.ns] = parent[plugin.ns] || {};
     }
 
     parent[plugin.name] = plugin.fn.bind(test);
@@ -57,8 +60,30 @@ module.exports = {
     addPlugin(plugins.actions, ns, pluginName, fn);
   },
 
+  addActions: function(ns, pluginObject) {
+    if (pluginObject === null || pluginObject === undefined) {
+      pluginObject = ns;
+      ns = null;
+    }
+
+    _.keys(pluginObject).forEach(function (pluginName) {
+      this.addAction(ns, pluginName, pluginObject[pluginName]);
+    }, this);
+  },
+
   addAssertion: function (ns, pluginName, fn) {
     addPlugin(plugins.assertions, ns, pluginName, fn);
+  },
+
+  addAssertions: function(ns, pluginObject) {
+    if (pluginObject === null || pluginObject === undefined) {
+      pluginObject = ns;
+      ns = null;
+    }
+
+    _.keys(pluginObject).forEach(function (pluginName) {
+      this.addAssertion(ns, pluginName, pluginObject[pluginName]);
+    }, this);
   },
 
   clear: function () {
