@@ -5,15 +5,15 @@ var dalekPluginize = require('../index.js');
 
 describe('dalek-extend', function(){
 
+  afterEach(function(){
+    dalekPluginize.clear();
+  });
+
   it('should exist', function(){
     assert.ok(dalekPluginize);
   });
 
   describe('addAction', function(){
-
-    afterEach(function(){
-      dalekPluginize.clear();
-    });
 
     it('adds a custom plugin to a test object', function(){
       var test = {},
@@ -58,13 +58,28 @@ describe('dalek-extend', function(){
       assert.throws(dalekPluginize.addAction.bind(this, pluginName, pluginMethod), Error);
     });
 
+    it('throws an error if duplicate plugin name and namespace are used', function(){
+      var pluginName = 'pluginName',
+        pluginMethod = function() {};
+
+      dalekPluginize.addAction('ns', pluginName, pluginMethod);
+
+      assert.throws(dalekPluginize.addAction.bind(this, 'ns', pluginName, pluginMethod), Error);
+    });
+
+
+    it('does not throw an error if duplicate plugin names with different namespaces are used', function(){
+      var pluginName = 'pluginName',
+        pluginMethod = function() {};
+
+      dalekPluginize.addAction('ns1', pluginName, pluginMethod);
+
+      assert.doesNotThrow(dalekPluginize.addAction.bind(this, 'ns2', pluginName, pluginMethod), Error);
+    });
+
   });
 
   describe('addAssertion', function(){
-
-    afterEach(function(){
-      dalekPluginize.clear();
-    });
 
     it('adds a custom plugin to a test object', function(){
       var test = {
@@ -113,6 +128,25 @@ describe('dalek-extend', function(){
       dalekPluginize.addAssertion(pluginName, pluginMethod);
 
       assert.throws(dalekPluginize.addAssertion.bind(this, pluginName, pluginMethod), Error);
+    });
+
+    it('throws an error if duplicate plugin name and namespace are used', function(){
+      var pluginName = 'pluginName',
+        pluginMethod = function() {};
+
+      dalekPluginize.addAssertion('ns', pluginName, pluginMethod);
+
+      assert.throws(dalekPluginize.addAssertion.bind(this, 'ns', pluginName, pluginMethod), Error);
+    });
+
+
+    it('does not throw an error if duplicate plugin names with different namespaces are used', function(){
+      var pluginName = 'pluginName',
+        pluginMethod = function() {};
+
+      dalekPluginize.addAssertion('ns1', pluginName, pluginMethod);
+
+      assert.doesNotThrow(dalekPluginize.addAssertion.bind(this, 'ns2', pluginName, pluginMethod), Error);
     });
 
   });

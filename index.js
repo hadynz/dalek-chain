@@ -29,8 +29,8 @@ var inheritAssertions = function (test) {
   });
 };
 
-var hasPlugin = function (pluginName, plugin) {
-  return plugin.name === pluginName;
+var hasPlugin = function (pluginName, ns, plugin) {
+  return plugin.name === pluginName && plugin.ns === ns;
 };
 
 var addPlugin = function (pluginArray, ns, pluginName, fn) {
@@ -40,7 +40,7 @@ var addPlugin = function (pluginArray, ns, pluginName, fn) {
     ns = null;
   }
 
-  if (pluginArray.some(hasPlugin.bind(this, pluginName))) {
+  if (pluginArray.some(hasPlugin.bind(this, pluginName, ns))) {
     throw Error('Plugin name already exists');
   }
 
