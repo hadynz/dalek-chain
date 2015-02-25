@@ -1,11 +1,11 @@
 {
-  "name": "dalek-extend",
+  "name": "dalek-pluginize",
   "version": "1.0.0",
   "description": "Returns a wrapped Dalek test object to extend with custom asserts and actions",
   "main": "dalek-extend.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:hadynz/dalek-extend.git"
+    "url": "git@github.com:hadynz/dalek-pluginize.git"
   },
   "keywords": [
     "dalek",
@@ -15,9 +15,9 @@
   "author": "Hady Osman <hadyos@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hadynz/dalek-extend/issues"
+    "url": "https://github.com/hadynz/dalek-pluginize/issues"
   },
-  "homepage": "https://github.com/hadynz/dalek-extend",
+  "homepage": "https://github.com/hadynz/dalek-pluginize",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.0",

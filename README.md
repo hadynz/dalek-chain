@@ -1,2 +1,2 @@
-# dalek-extend
-Returns a wrapped Dalek test object to extend with custom asserts and actions
+# dalek-pluginize
+Enables the creation of Dalek plugins for assertions and actions by wrapping the Dalek test object.
