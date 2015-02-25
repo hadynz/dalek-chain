@@ -67,7 +67,6 @@ describe('dalek-extend', function(){
       assert.throws(dalekPluginize.addAction.bind(this, 'ns', pluginName, pluginMethod), Error);
     });
 
-
     it('does not throw an error if duplicate plugin names with different namespaces are used', function(){
       var pluginName = 'pluginName',
         pluginMethod = function() {};
