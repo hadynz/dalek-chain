@@ -10,7 +10,7 @@ var inheritActions = function (test) {
     var parent = test;
 
     if (plugin.ns) {
-      parent = test[plugin.ns] = {};
+      parent = parent[plugin.ns] = {};
     }
 
     parent[plugin.name] = plugin.fn.bind(test);
@@ -22,7 +22,7 @@ var inheritAssertions = function (test) {
     var parent = test.assert;
 
     if (plugin.ns) {
-      parent = test[plugin.ns] = {};
+      parent = parent[plugin.ns] = {};
     }
 
     parent[plugin.name] = plugin.fn.bind(test);

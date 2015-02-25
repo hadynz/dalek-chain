@@ -60,4 +60,61 @@ describe('dalek-extend', function(){
 
   });
 
+  describe('addAssertion', function(){
+
+    afterEach(function(){
+      dalekPluginize.clear();
+    });
+
+    it('adds a custom plugin to a test object', function(){
+      var test = {
+          assert: {}
+        },
+        pluginName = 'pluginName',
+        pluginMethod = function() {
+          assert.deepEqual(this, test);
+        };
+
+      dalekPluginize.addAssertion(pluginName, pluginMethod);
+      dalekPluginize.extend(test);
+
+      assert.notProperty(test, pluginName);
+      assert.property(test.assert, pluginName);
+      assert.isFunction(test.assert[pluginName]);
+
+      test.assert.pluginName();
+    });
+
+    it('adds a custom plugin to a test object with a namespace', function(){
+      var test = {
+          assert: {}
+        },
+        ns = 'namespace',
+        pluginName = 'pluginName',
+        pluginMethod = function() {
+          assert.deepEqual(this, test);
+        };
+
+      dalekPluginize.addAssertion(ns, pluginName, pluginMethod);
+      dalekPluginize.extend(test);
+
+      assert.notProperty(test, pluginName);
+      assert.notProperty(test.assert, pluginName);
+      assert.property(test.assert.namespace, pluginName);
+      assert.isFunction(test.assert.namespace[pluginName]);
+
+      test.assert.namespace.pluginName();
+    });
+
+    it('throws an error if duplicate plugin name is used', function(){
+      var pluginName = 'pluginName',
+        pluginMethod = function() {};
+
+      dalekPluginize.addAssertion(pluginName, pluginMethod);
+
+      assert.throws(dalekPluginize.addAssertion.bind(this, pluginName, pluginMethod), Error);
+    });
+
+  });
+
 });
