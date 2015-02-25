@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert;
-var dalekPluginize = require('../index.js');
+var dalekPluginize = require('../src/dalek-pluginize');
 
 describe('dalek-extend', function(){
 

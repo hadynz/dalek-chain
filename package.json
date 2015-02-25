@@ -2,7 +2,7 @@
   "name": "dalek-pluginize",
   "version": "1.0.0",
   "description": "Returns a wrapped Dalek test object to extend with custom asserts and actions",
-  "main": "index.js",
+  "main": "src/dalek-pluginize.js",
   "scripts": {
     "test": "grunt test"
   },
