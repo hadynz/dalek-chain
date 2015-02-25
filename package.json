@@ -26,5 +26,8 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-mocha-test": "^0.12.7"
+  },
+  "dependencies": {
+    "lodash": "^3.3.1"
   }
 }
