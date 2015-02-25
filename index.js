@@ -13,7 +13,7 @@ var inheritActions = function (test) {
 };
 
 var inheritAssertions = function (test) {
-  _.keys(plugins.actions).forEach(function (pluginName) {
+  _.keys(plugins.assertions).forEach(function (pluginName) {
     test.assert[pluginName] = plugins.assertions[pluginName].bind(test);
   });
 };
