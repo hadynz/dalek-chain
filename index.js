@@ -1,41 +1,69 @@
 'use strict';
 
-var _ = require('lodash');
-
 var plugins = {
-  actions: {},
-  assertions: {}
+  actions: [],
+  assertions: []
 };
 
 var inheritActions = function (test) {
-  _.keys(plugins.actions).forEach(function (pluginName) {
-    test[pluginName] = plugins.actions[pluginName].bind(test);
-  });
+  plugins.actions.forEach(function (plugin) {
+    var parent = test;
 
+    if (plugin.ns) {
+      parent = test[plugin.ns] = {};
+    }
+
+    parent[plugin.name] = plugin.fn.bind(test);
+  });
 };
 
 var inheritAssertions = function (test) {
-  _.keys(plugins.assertions).forEach(function (pluginName) {
-    test.assert[pluginName] = plugins.assertions[pluginName].bind(test);
+  plugins.assertions.forEach(function (plugin) {
+    var parent = test.assert;
+
+    if (plugin.ns) {
+      parent = test[plugin.ns] = {};
+    }
+
+    parent[plugin.name] = plugin.fn.bind(test);
+  });
+};
+
+var hasPlugin = function (pluginName, plugin) {
+  return plugin.name === pluginName;
+};
+
+var addPlugin = function (pluginArray, ns, pluginName, fn) {
+  if (fn === null || fn === undefined) {
+    fn = pluginName;
+    pluginName = ns;
+    ns = null;
+  }
+
+  if (pluginArray.some(hasPlugin.bind(this, pluginName))) {
+    throw Error('Plugin name already exists');
+  }
+
+  pluginArray.push({
+    name: pluginName,
+    fn: fn,
+    ns: ns
   });
 };
 
 module.exports = {
 
-  addAction: function (pluginName, fn) {
-    if (plugins.actions[pluginName]) {
-      throw Error('Custom action plugin name already exists');
-    }
-
-    plugins.actions[pluginName] = fn;
+  addAction: function (ns, pluginName, fn) {
+    addPlugin(plugins.actions, ns, pluginName, fn);
   },
 
-  addAssertion: function (pluginName, fn) {
-    if (plugins.assertions[pluginName]) {
-      throw Error('Custom assertion plugin name already exists');
-    }
+  addAssertion: function (ns, pluginName, fn) {
+    addPlugin(plugins.assertions, ns, pluginName, fn);
+  },
 
-    plugins.assertions[pluginName] = fn;
+  clear: function () {
+    plugins.actions.length = 0;
+    plugins.assertions.length = 0;
   },
 
   extend: function (test) {
