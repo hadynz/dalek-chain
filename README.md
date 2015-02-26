@@ -32,9 +32,15 @@ dalekPluginize.addAction('showDialog', function(){
   return this.click('.dialog');
 });
 
-# Namespace plugins similar to `.assert`
+// Namespace plugins similar to `.assert`
 dalekPluginize.addAction('ns', 'open', function(path){
   return this.open('http://localhost:9000/' + path);
+});
+
+// Bulk register custom actions
+dalekPluginize.addActions({
+  showDialog: function() { },
+  ...
 });
 
 ```
@@ -45,7 +51,6 @@ dalekPluginize.addAction('ns', 'open', function(path){
 var ex = require('dalek-pluginize').extend;
 
 module.exports = {
-
   'My Dalek test': function(test) {
     ex(test)
       .ns.open('test/index.html')
@@ -53,9 +58,32 @@ module.exports = {
       .assert.visible('.dialog')
       .done();
   }
-
 }
 ```
+
+## API
+
+### .addAction([namespace], pluginName, fn)
+
+* `namespace` namespace for custom action plugin to reside inside
+* `pluginName` name of the new custom action plugin
+* `fn` the function to execute. Uses current Dalek test object as its scope
+
+### .addActions([namespace], config)
+
+* `namespace` namespace for custom plugin to reside inside
+* `config` an object with key value pairs mapping to plugin name and function callback
+
+### .addAssertion([namespace], pluginName, fn)
+
+* `namespace` namespace for custom assertion plugin to reside inside
+* `pluginName` name of the new custom assertion plugin
+* `fn` the function to execute. Uses current Dalek test object as its scope
+
+### .addAssertions([namespace], config)
+
+* `namespace` namespace for custom plugin to reside inside
+* `config` an object with key value pairs mapping to plugin name and function callback
 
 [dalekjs]: http://dalekjs.com
 [proposal]: https://github.com/rodneyrehm/dalek-api#registering-an-action

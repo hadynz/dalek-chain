@@ -60,14 +60,14 @@ module.exports = {
     addPlugin(plugins.actions, ns, pluginName, fn);
   },
 
-  addActions: function(ns, pluginObject) {
-    if (pluginObject === null || pluginObject === undefined) {
-      pluginObject = ns;
+  addActions: function(ns, config) {
+    if (config === null || config === undefined) {
+      config = ns;
       ns = null;
     }
 
-    _.keys(pluginObject).forEach(function (pluginName) {
-      this.addAction(ns, pluginName, pluginObject[pluginName]);
+    _.keys(config).forEach(function (pluginName) {
+      this.addAction(ns, pluginName, config[pluginName]);
     }, this);
   },
 
@@ -75,14 +75,14 @@ module.exports = {
     addPlugin(plugins.assertions, ns, pluginName, fn);
   },
 
-  addAssertions: function(ns, pluginObject) {
-    if (pluginObject === null || pluginObject === undefined) {
-      pluginObject = ns;
+  addAssertions: function(ns, config) {
+    if (config === null || config === undefined) {
+      config = ns;
       ns = null;
     }
 
-    _.keys(pluginObject).forEach(function (pluginName) {
-      this.addAssertion(ns, pluginName, pluginObject[pluginName]);
+    _.keys(config).forEach(function (pluginName) {
+      this.addAssertion(ns, pluginName, config[pluginName]);
     }, this);
   },
 
