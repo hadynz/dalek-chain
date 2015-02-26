@@ -87,7 +87,7 @@ module.exports = {
 
 ## License
 
-Copyright (c) 2014 Hady Osman
+Copyright (c) 2014 Hady Osman  
 Licensed under the [MIT][license] license.
 
 [dalekjs]: http://dalekjs.com
