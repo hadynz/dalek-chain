@@ -85,5 +85,11 @@ module.exports = {
 * `namespace` namespace for custom plugin to reside inside
 * `config` an object with key value pairs mapping to plugin name and function callback
 
+## License
+
+Copyright (c) 2014 Hady Osman
+Licensed under the [MIT][license] license.
+
 [dalekjs]: http://dalekjs.com
 [proposal]: https://github.com/rodneyrehm/dalek-api#registering-an-action
+[license]: https://github.com/hadynz/dalek-pluginize/blob/master/README.md
