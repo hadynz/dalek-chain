@@ -51,6 +51,7 @@ dalekPluginize.addActions({
 var ex = require('dalek-pluginize').extend;
 
 module.exports = {
+
   'My Dalek test': function(test) {
     ex(test)
       .ns.open('test/index.html')
@@ -58,6 +59,7 @@ module.exports = {
       .assert.visible('.dialog')
       .done();
   }
+  
 }
 ```
 
