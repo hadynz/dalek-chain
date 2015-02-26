@@ -101,7 +101,7 @@ Extends a Dalek test object with all registered custom action and assertion plug
 
 ## License
 
-Copyright (c) 2014 Hady Osman
+Copyright (c) 2014 Hady Osman   
 Licensed under the [MIT][license] license.
 
 [dalekjs]: http://dalekjs.com
