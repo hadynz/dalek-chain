@@ -65,29 +65,43 @@ module.exports = {
 
 ### .addAction([namespace], pluginName, fn)
 
-* `namespace` namespace for custom action plugin to reside inside
+Adds a new custom action plugin
+
+* `namespace` (optional) namespace for custom action plugin to reside inside
 * `pluginName` name of the new custom action plugin
 * `fn` the function to execute. Uses current Dalek test object as its scope
 
 ### .addActions([namespace], config)
 
-* `namespace` namespace for custom plugin to reside inside
+Bulk adds new action plugins
+
+* `namespace` (optional) namespace for custom plugin to reside inside
 * `config` an object with key value pairs mapping to plugin name and function callback
 
 ### .addAssertion([namespace], pluginName, fn)
 
-* `namespace` namespace for custom assertion plugin to reside inside
+Adds a new custom assertion plugin
+
+* `namespace` (optional) namespace for custom assertion plugin to reside inside
 * `pluginName` name of the new custom assertion plugin
 * `fn` the function to execute. Uses current Dalek test object as its scope
 
 ### .addAssertions([namespace], config)
 
-* `namespace` namespace for custom plugin to reside inside
+Bulk adds new assertion plugins
+
+* `namespace` (optional) namespace for custom plugin to reside inside
 * `config` an object with key value pairs mapping to plugin name and function callback
+
+### .extend(test)
+
+Extends a Dalek test object with all registered custom action and assertion plugins
+
+* `test` Dalek test object to wrap with registered custom plugins
 
 ## License
 
-Copyright (c) 2014 Hady Osman  
+Copyright (c) 2014 Hady Osman
 Licensed under the [MIT][license] license.
 
 [dalekjs]: http://dalekjs.com
