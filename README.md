@@ -18,7 +18,7 @@ the writing of cleaner and chainable Dalek test code today.
 With [npm](http://npmjs.org) do:
 
 ```bash
-npm install dalek-pluginize --save
+npm install dalek-pluginize --save-dev
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ module.exports = {
       .assert.visible('.dialog')
       .done();
   }
-  
+
 }
 ```
 
@@ -103,7 +103,7 @@ Extends a Dalek test object with all registered custom action and assertion plug
 
 ## License
 
-Copyright (c) 2014 Hady Osman   
+Copyright (c) 2014 Hady Osman
 Licensed under the [MIT][license] license.
 
 [dalekjs]: http://dalekjs.com
